@@ -63,7 +63,7 @@ if isempty(filename)
     filename = [path, file];
 end
 
-if filename == [0, 0]
+if isequal(file, 0)
     error("No input file!")
     return
 end
