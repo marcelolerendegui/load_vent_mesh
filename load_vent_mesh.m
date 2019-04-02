@@ -63,7 +63,8 @@ if isempty(filename)
     filename = [path, file];
 end
 
-if isempty(filename)
+if filename == [0, 0]
+    error("No input file!")
     return
 end
 
@@ -85,8 +86,8 @@ end
 
 
 % Read name of original ultrasound file
-filename_len = fread(fid, 1, 'int');
-filename = fread(fid, filename_len, 'char');
+fname_len = fread(fid, 1, 'int');
+fname = fread(fid, fname_len, 'char');
 
 % Read number of volumes ("frames")
 nVols = fread(fid,1,'int');
@@ -108,7 +109,7 @@ vframesize = RasterZ * RasterT;
 fclose(fid);
 
 %% Memoory Map Data
-m = memmapfile([path, file], 'Offset', offset, ...
+m = memmapfile(filename, 'Offset', offset, ...
     'Format', { ...
         'single', [3], 'base'; ...
         'single', [3], 'apex'; ...
