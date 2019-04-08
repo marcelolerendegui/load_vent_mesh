@@ -81,12 +81,18 @@ plot3(ha1, xc, yc, zc, '*r');
 %% Plot 
 xyz = [x(:), y(:), x(:)];
 xyz_c = repmat([xc, yc, zc], [size(xyz,1), 1]);
-dst = vecnorm((xyz-xyz_c).');
+rad = vecnorm((xyz-xyz_c).');
 
 hf2 = figure("Name", "Distance to centroid");
 ha2 = axes();
-plot(ha2, dst);
+plot(ha2, rad);
 
 hf3 = figure("Name", "Distance to centroid Histogram");
 ha3 = axes();
-hist(ha3, dst);
+hist(ha3, rad);
+
+avg_rad = mean(rad);
+MSE = sum((rad-avg_rad).^2);
+
+disp(["Average radius:", avg_rad]);
+disp(["MSE:", MSE]);
