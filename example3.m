@@ -79,7 +79,7 @@ plot3(ha1, xc, yc, zc, '*r');
 
 
 %% Plot 
-xyz = [x(:), y(:), x(:)];
+xyz = [x(:), y(:), z(:)];
 xyz_c = repmat([xc, yc, zc], [size(xyz,1), 1]);
 rad = vecnorm((xyz-xyz_c).');
 
